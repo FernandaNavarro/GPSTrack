@@ -49,97 +49,115 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Models\AlertModel.cs" />
+    <Compile Include="Models\CrashModel.cs" />
+    <Compile Include="Models\ExternalModel.cs" />
+    <Compile Include="Models\KeepModel.cs" />
+    <Compile Include="Models\MaintenanceModel.cs" />
+    <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Models\StatusModel.cs" />
+    <Compile Include="Models\TransferModel.cs" />
+    <Compile Include="Models\TravelModel.cs" />
+    <Compile Include="ViewsModels\AlertViewModel.cs" />
+    <Compile Include="ViewsModels\CrashViewModel.cs" />
+    <Compile Include="ViewsModels\ExternalViewModel.cs" />
+    <Compile Include="ViewsModels\KeepViewModel.cs" />
+    <Compile Include="ViewsModels\MaintenanceViewModel.cs" />
+    <Compile Include="ViewsModels\MessageViewModel.cs" />
+    <Compile Include="ViewsModels\StatusViewModel.cs" />
+    <Compile Include="ViewsModels\TransferViewModel.cs" />
+    <Compile Include="ViewsModels\TravelViewModel.cs" />
+    <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Views\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAlert.cs">
+    <Compile Include="Views\AlertView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAlert.Designer.cs">
-      <DependentUpon>FormAlert.cs</DependentUpon>
+    <Compile Include="Views\AlertView.Designer.cs">
+      <DependentUpon>AlertView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCrash.cs">
+    <Compile Include="Views\CrashView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCrash.Designer.cs">
-      <DependentUpon>FormCrash.cs</DependentUpon>
+    <Compile Include="Views\CrashView.Designer.cs">
+      <DependentUpon>CrashView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormExternal.cs">
+    <Compile Include="Views\ExternalView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormExternal.Designer.cs">
-      <DependentUpon>FormExternal.cs</DependentUpon>
+    <Compile Include="Views\ExternalView.Designer.cs">
+      <DependentUpon>ExternalView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormKeep.cs">
+    <Compile Include="Views\KeepView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormKeep.Designer.cs">
-      <DependentUpon>FormKeep.cs</DependentUpon>
+    <Compile Include="Views\KeepView.Designer.cs">
+      <DependentUpon>KeepView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMaintenance.cs">
+    <Compile Include="Views\MaintenanceView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMaintenance.Designer.cs">
-      <DependentUpon>FormMaintenance.cs</DependentUpon>
+    <Compile Include="Views\MaintenanceView.Designer.cs">
+      <DependentUpon>MaintenanceView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormMessage.cs">
+    <Compile Include="Views\MessageView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormMessage.Designer.cs">
-      <DependentUpon>FormMessage.cs</DependentUpon>
+    <Compile Include="Views\MessageView.Designer.cs">
+      <DependentUpon>MessageView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormStatus.cs">
+    <Compile Include="Views\StatusView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormStatus.Designer.cs">
-      <DependentUpon>FormStatus.cs</DependentUpon>
+    <Compile Include="Views\StatusView.Designer.cs">
+      <DependentUpon>StatusView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTransfer.cs">
+    <Compile Include="Views\TransferView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTransfer.Designer.cs">
-      <DependentUpon>FormTransfer.cs</DependentUpon>
+    <Compile Include="Views\TransferView.Designer.cs">
+      <DependentUpon>TransferView.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTravel.cs">
+    <Compile Include="Views\TravelView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTravel.Designer.cs">
-      <DependentUpon>FormTravel.cs</DependentUpon>
+    <Compile Include="Views\TravelView.Designer.cs">
+      <DependentUpon>TravelView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Views\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAlert.resx">
-      <DependentUpon>FormAlert.cs</DependentUpon>
+    <EmbeddedResource Include="Views\AlertView.resx">
+      <DependentUpon>AlertView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCrash.resx">
-      <DependentUpon>FormCrash.cs</DependentUpon>
+    <EmbeddedResource Include="Views\CrashView.resx">
+      <DependentUpon>CrashView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormExternal.resx">
-      <DependentUpon>FormExternal.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ExternalView.resx">
+      <DependentUpon>ExternalView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormKeep.resx">
-      <DependentUpon>FormKeep.cs</DependentUpon>
+    <EmbeddedResource Include="Views\KeepView.resx">
+      <DependentUpon>KeepView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMaintenance.resx">
-      <DependentUpon>FormMaintenance.cs</DependentUpon>
+    <EmbeddedResource Include="Views\MaintenanceView.resx">
+      <DependentUpon>MaintenanceView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormMessage.resx">
-      <DependentUpon>FormMessage.cs</DependentUpon>
+    <EmbeddedResource Include="Views\MessageView.resx">
+      <DependentUpon>MessageView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStatus.resx">
-      <DependentUpon>FormStatus.cs</DependentUpon>
+    <EmbeddedResource Include="Views\StatusView.resx">
+      <DependentUpon>StatusView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTransfer.resx">
-      <DependentUpon>FormTransfer.cs</DependentUpon>
+    <EmbeddedResource Include="Views\TransferView.resx">
+      <DependentUpon>TransferView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTravel.resx">
-      <DependentUpon>FormTravel.cs</DependentUpon>
+    <EmbeddedResource Include="Views\TravelView.resx">
+      <DependentUpon>TravelView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -168,5 +186,6 @@
   <ItemGroup>
     <None Include="Resources\logo.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
