@@ -1,53 +1,86 @@
-﻿namespace GPSTrack.ViewsModels
+﻿namespace Server.ViewModels
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using GPSTrack.Models;
 
-    public class TravelViewModel
+    public class AlertViewModel
     {
         #region Variables
-        private static TravelViewModel _instance;
+        private static AlertViewModel _instance;
 
         public Dictionary<string, int> propertyLength = new Dictionary<string, int>()
         {
             {"HDR", 2 },
             {"PKT_LEN", 4 },
             {"DEV_ID", 10 },
-            {"STT_RPT_MAP", 10 },
+            {"STT_RPT_MAP", 6 },
             {"MODEL", 2 },
             {"SW_VER", 6 },
             {"MSG_TYPE", 2},
             {"DATE", 6},
             {"TIME", 6 },
-            {"LAT_TRV_ST", 8 },
-            {"LON_TRV_ST", 8 },
-            {"LAT_TRV_FI", 8 },
-            {"LON_TRV_FI", 8 },
-            {"DRIVER_ID", 16 },
-            {"TRV_DIST", 8 },
-            {"TRV_H_METER", 8 },
-            {"IDLE_TIME", 8 },
-            {"IDLE_EVENTS", 4 },
-            {"SPD_TIME", 8 },
-            {"SPD_EVENTS", 4 },
-            {"MAX_SPD", 4 },
-            {"AVG_SPD", 4 },
-            {"GPS_ODOM", 8 }
-
+            {"CELL_ID", 8 },
+            {"MCC", 4 },
+            {"MNC", 4 },
+            {"LAC", 4 },
+            {"RX_LVL", 2 },
+            {"LAT", 8 },
+            {"LON", 8 },
+            {"SPD", 4 },
+            {"CRS", 4 },
+            {"SATT", 2 },
+            {"FIX", 2 },
+            {"IN_STATE", 2 },
+            {"OUT_STATE", 2 },
+            {"ALERT_ID", 2 },
+            {"ALERT_MOD", 4 },
+            {"ALERT_DATA", 0 },
+            {"reserved", 2 },
+            {"ASSIGN_MAP", 8 },
+            {"S_ASSIGN1", 4},
+            {"S_ASSIGN2", 4},
+            {"S_ASSIGN3", 4},
+            {"S_ASSIGN4", 4},
+            {"S_ASSIGN5", 4},
+            {"S_ASSIGN6", 4},
+            {"S_ASSIGN7", 4},
+            {"S_ASSIGN8", 4},
+            {"S_ASSIGN9", 4},
+            {"S_ASSIGN10", 4},
+            {"S_ASSIGN11", 4},
+            {"S_ASSIGN12", 4},
+            {"S_ASSIGN13", 4},
+            {"S_ASSIGN14", 4},
+            {"S_ASSIGN15", 4},
+            {"M_ASSIGN1", 8 },
+            {"M_ASSIGN2", 8 },
+            {"M_ASSIGN3", 8 },
+            {"M_ASSIGN4", 8 },
+            {"M_ASSIGN5", 8 },
+            {"M_ASSIGN6", 8 },
+            {"M_ASSIGN7", 8 },
+            {"M_ASSIGN8", 8 },
+            {"L_ASSIGN1", 16 },
+            {"L_ASSIGN2", 16 },
+            {"L_ASSIGN3", 16 },
+            {"L_ASSIGN4", 16 },
+            {"L_ASSIGN5", 16 },
+            {"L_ASSIGN6", 16 },
+            {"L_ASSIGN7", 16 },
+            {"L_ASSIGN8", 16 },
         };
         private static string voidField = "#";
         #endregion
 
         #region Methods
-        public static TravelViewModel GetReference()
+        public static AlertViewModel GetReference()
         {
             if (_instance == null)
             {
-                _instance = new TravelViewModel();
+                _instance = new AlertViewModel();
             }
 
             return _instance;
@@ -66,9 +99,9 @@
             }
         }
 
-        public TravelModel GetObjZipFormat(string message)
+        public AlertViewModel GetObjZipFormat(string message)
         {
-            var obj = new TravelModel();
+            var obj = new AlertViewModel();
             int propertyLength = 0;
             int sumLengths = 0;
 
@@ -88,9 +121,9 @@
             return obj;
         }
 
-        public TravelModel GetObjNormalFormat(string message)
+        public AlertViewModel GetObjNormalFormat(string message)
         {
-            var obj = new TravelModel();
+            var obj = new AlertViewModel();
             var arrMsg = message.Split(';');
             int index = 0;
             foreach (var property in obj.GetType().GetProperties())
@@ -109,7 +142,7 @@
             return obj;
         }
 
-        public void DisplayData(TravelModel status)
+        public void DisplayData(AlertViewModel status)
         {
             foreach (var property in status.GetType().GetProperties())
             {
@@ -117,7 +150,7 @@
             }
         }
 
-        public string GetMsgZipFormat(TravelModel message)
+        public string GetMsgZipFormat(AlertViewModel message)
         {
             StringBuilder msg = new StringBuilder();
             foreach (var property in message.GetType().GetProperties())
@@ -133,7 +166,7 @@
             return msg.ToString();
         }
 
-        public string GetMsgNormalFormat(TravelModel message)
+        public string GetMsgNormalFormat(AlertViewModel message)
         {
             StringBuilder msg = new StringBuilder();
             foreach (var property in message.GetType().GetProperties())
@@ -150,6 +183,12 @@
 
             return theMSG.Substring(0, theMSG.Length - 1);
         }
+
+        public void SetPropertyLengthValue(string key, int value)
+        {
+            propertyLength[key] = value;
+        }
         #endregion
+
     }
 }

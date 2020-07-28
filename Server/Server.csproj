@@ -43,11 +43,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Helpers\SuntechServices.cs" />
+    <Compile Include="Helpers\TeltonikaService.cs" />
+    <Compile Include="Models\AlertModel.cs" />
+    <Compile Include="Models\CrashModel.cs" />
+    <Compile Include="Models\ExternalModel.cs" />
+    <Compile Include="Models\KeepModel.cs" />
+    <Compile Include="Models\MaintenanceModel.cs" />
+    <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Models\StatusModel.cs" />
+    <Compile Include="Models\TransferModel.cs" />
+    <Compile Include="Models\TravelModel.cs" />
+    <Compile Include="ServerProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Helpers\ServerTcpConnection.cs" />
+    <Compile Include="ViewModels\AlertViewModel.cs" />
+    <Compile Include="ViewModels\CrashViewModel.cs" />
+    <Compile Include="ViewModels\ExternalViewModel.cs" />
+    <Compile Include="ViewModels\KeepViewModel.cs" />
+    <Compile Include="ViewModels\MaintenanceViewModel.cs" />
+    <Compile Include="ViewModels\MessageViewModel.cs" />
+    <Compile Include="ViewModels\StatusViewModel.cs" />
+    <Compile Include="ViewModels\TransferViewModel.cs" />
+    <Compile Include="ViewModels\TravelViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

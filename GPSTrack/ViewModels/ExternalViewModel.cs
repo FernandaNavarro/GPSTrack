@@ -1,4 +1,4 @@
-﻿namespace GPSTrack.ViewsModels
+﻿namespace GPSTrack.ViewModels
 {
     using System;
     using System.Collections.Generic;
@@ -7,26 +7,50 @@
     using System.Threading.Tasks;
     using GPSTrack.Models;
 
-    public class KeepViewModel
+    public class ExternalViewModel
     {
         #region Variables
-        private static KeepViewModel _instance;
+        private static ExternalViewModel _instance;
 
         public Dictionary<string, int> propertyLength = new Dictionary<string, int>()
         {
             {"HDR", 2 },
             {"PKT_LEN", 4 },
-            {"DEV_ID", 10 }
+            {"DEV_ID", 10 },
+            {"STT_RPT_MAP", 6 },
+            {"MODEL", 2 },
+            {"SW_VER", 6 },
+            {"MSG_TYPE", 2},
+            {"DATE", 6},
+            {"TIME", 6 },
+            {"CELL_ID", 8 },
+            {"MCC", 4 },
+            {"MNC", 4 },
+            {"LAC", 4 },
+            {"RX_LVL", 2 },
+            {"LAT", 8 },
+            {"LON", 8 },
+            {"SPD", 4 },
+            {"CRS", 4 },
+            {"SATT", 2 },
+            {"FIX", 2 },
+            {"IN_STATE", 2 },
+            {"OUT_STATE", 2 },
+            {"LEN", 4 },
+            {"DATA", 0 },
+            {"CHK_SUM", 4 },
+            {"reserved", 2 },
+            {"reserved2", 2 },
         };
         private static string voidField = "#";
         #endregion
 
-        #region Methods
-        public static KeepViewModel GetReference()
+        #region Methosds
+        public static ExternalViewModel GetReference()
         {
             if (_instance == null)
             {
-                _instance = new KeepViewModel();
+                _instance = new ExternalViewModel();
             }
 
             return _instance;
@@ -43,11 +67,11 @@
             {
                 return voidField;
             }
-        }        
+        }
 
-        public KeepModel GetObjZipFormat(string message)
+        public ExternalModel GetObjZipFormat(string message)
         {
-            var obj = new KeepModel();
+            var obj = new ExternalModel();
             int propertyLength = 0;
             int sumLengths = 0;
 
@@ -67,9 +91,9 @@
             return obj;
         }
 
-        public KeepModel GetObjNormalFormat(string message)
+        public ExternalModel GetObjNormalFormat(string message)
         {
-            var obj = new KeepModel();
+            var obj = new ExternalModel();
             var arrMsg = message.Split(';');
             int index = 0;
             foreach (var property in obj.GetType().GetProperties())
@@ -88,7 +112,7 @@
             return obj;
         }
 
-        public void DisplayData(KeepModel status)
+        public void DisplayData(ExternalModel status)
         {
             foreach (var property in status.GetType().GetProperties())
             {
@@ -96,7 +120,7 @@
             }
         }
 
-        public string GetMsgZipFormat(KeepModel message)
+        public string GetMsgZipFormat(ExternalModel message)
         {
             StringBuilder msg = new StringBuilder();
             foreach (var property in message.GetType().GetProperties())
@@ -112,7 +136,7 @@
             return msg.ToString();
         }
 
-        public string GetMsgNormalFormat(KeepModel message)
+        public string GetMsgNormalFormat(ExternalModel message)
         {
             StringBuilder msg = new StringBuilder();
             foreach (var property in message.GetType().GetProperties())
@@ -128,6 +152,11 @@
             var theMSG = msg.ToString();
 
             return theMSG.Substring(0, theMSG.Length - 1);
+        }
+
+        public void SetPropertyLengthValue(string key, int value)
+        {
+            propertyLength[key] = value;
         }
         #endregion
 

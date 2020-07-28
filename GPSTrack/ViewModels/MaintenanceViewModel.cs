@@ -1,30 +1,31 @@
-﻿namespace GPSTrack.ViewsModels
+﻿namespace GPSTrack.ViewModels
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using GPSTrack.Models;
 
-    public class CrashViewModel
+    public class MaintenanceViewModel
     {
         #region Variables
-        private static CrashViewModel _instance;
+        private static MaintenanceViewModel _instance;
         private static string voidField = "#";
         #endregion
 
         #region Methods
-        public static CrashViewModel GetReference()
+        public static MaintenanceViewModel GetReference()
         {
             if (_instance == null)
             {
-                _instance = new CrashViewModel();
+                _instance = new MaintenanceViewModel();
             }
 
             return _instance;
         }
 
-        public string GetMsg(CrashViewModel message)
+        public string GetMsgNormalFormat(MaintenanceModel message)
         {
             StringBuilder msg = new StringBuilder();
             foreach (var property in message.GetType().GetProperties())
@@ -41,8 +42,6 @@
 
             return theMSG.Substring(0, theMSG.Length - 1);
         }
-
         #endregion
-
     }
 }

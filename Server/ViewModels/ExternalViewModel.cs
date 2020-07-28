@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GPSTrack.ViewsModels
+﻿namespace Server.ViewModels
 {
-    public class AlertViewModel
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Server.Models;
+
+    public class ExternalViewModel
     {
         #region Variables
-        private static AlertViewModel _instance;
+        private static ExternalViewModel _instance;
 
         public Dictionary<string, int> propertyLength = new Dictionary<string, int>()
         {
@@ -35,52 +36,21 @@ namespace GPSTrack.ViewsModels
             {"FIX", 2 },
             {"IN_STATE", 2 },
             {"OUT_STATE", 2 },
-            {"ALERT_ID", 2 },
-            {"ALERT_MOD", 4 },
-            {"ALERT_DATA", 0 },
+            {"LEN", 4 },
+            {"DATA", 0 },
+            {"CHK_SUM", 4 },
             {"reserved", 2 },
-            {"ASSIGN_MAP", 8 },
-            {"S_ASSIGN1", 4},
-            {"S_ASSIGN2", 4},
-            {"S_ASSIGN3", 4},
-            {"S_ASSIGN4", 4},
-            {"S_ASSIGN5", 4},
-            {"S_ASSIGN6", 4},
-            {"S_ASSIGN7", 4},
-            {"S_ASSIGN8", 4},
-            {"S_ASSIGN9", 4},
-            {"S_ASSIGN10", 4},
-            {"S_ASSIGN11", 4},
-            {"S_ASSIGN12", 4},
-            {"S_ASSIGN13", 4},
-            {"S_ASSIGN14", 4},
-            {"S_ASSIGN15", 4},
-            {"M_ASSIGN1", 8 },
-            {"M_ASSIGN2", 8 },
-            {"M_ASSIGN3", 8 },
-            {"M_ASSIGN4", 8 },
-            {"M_ASSIGN5", 8 },
-            {"M_ASSIGN6", 8 },
-            {"M_ASSIGN7", 8 },
-            {"M_ASSIGN8", 8 },
-            {"L_ASSIGN1", 16 },
-            {"L_ASSIGN2", 16 },
-            {"L_ASSIGN3", 16 },
-            {"L_ASSIGN4", 16 },
-            {"L_ASSIGN5", 16 },
-            {"L_ASSIGN6", 16 },
-            {"L_ASSIGN7", 16 },
-            {"L_ASSIGN8", 16 },
+            {"reserved2", 2 },
         };
         private static string voidField = "#";
         #endregion
 
-        #region Methods
-        public static AlertViewModel GetReference()
+        #region Methosds
+        public static ExternalViewModel GetReference()
         {
             if (_instance == null)
             {
-                _instance = new AlertViewModel();
+                _instance = new ExternalViewModel();
             }
 
             return _instance;
@@ -99,9 +69,9 @@ namespace GPSTrack.ViewsModels
             }
         }
 
-        public AlertViewModel GetObjZipFormat(string message)
+        public ExternalModel GetObjZipFormat(string message)
         {
-            var obj = new AlertViewModel();
+            var obj = new ExternalModel();
             int propertyLength = 0;
             int sumLengths = 0;
 
@@ -121,9 +91,9 @@ namespace GPSTrack.ViewsModels
             return obj;
         }
 
-        public AlertViewModel GetObjNormalFormat(string message)
+        public ExternalModel GetObjNormalFormat(string message)
         {
-            var obj = new AlertViewModel();
+            var obj = new ExternalModel();
             var arrMsg = message.Split(';');
             int index = 0;
             foreach (var property in obj.GetType().GetProperties())
@@ -142,7 +112,7 @@ namespace GPSTrack.ViewsModels
             return obj;
         }
 
-        public void DisplayData(AlertViewModel status)
+        public void DisplayData(ExternalModel status)
         {
             foreach (var property in status.GetType().GetProperties())
             {
@@ -150,7 +120,7 @@ namespace GPSTrack.ViewsModels
             }
         }
 
-        public string GetMsgZipFormat(AlertViewModel message)
+        public string GetMsgZipFormat(ExternalModel message)
         {
             StringBuilder msg = new StringBuilder();
             foreach (var property in message.GetType().GetProperties())
@@ -166,7 +136,7 @@ namespace GPSTrack.ViewsModels
             return msg.ToString();
         }
 
-        public string GetMsgNormalFormat(AlertViewModel message)
+        public string GetMsgNormalFormat(ExternalModel message)
         {
             StringBuilder msg = new StringBuilder();
             foreach (var property in message.GetType().GetProperties())

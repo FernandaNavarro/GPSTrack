@@ -13,11 +13,17 @@
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        //public static void Main()
+        //{
+        //    //Application.EnableVisualStyles();
+        //    //Application.SetCompatibleTextRenderingDefault(false);
+        //    //Application.Run(new MainView());
+        //}
+
+        public static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainView());
+            Console.WriteLine("Hello World");
+            Console.ReadKey();
         }
     }
 }

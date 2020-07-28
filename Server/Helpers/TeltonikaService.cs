@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server
+namespace Server.Helpers
 {
-    class Program
+    public class TeltonikaService
     {
-        static void Main(string[] args)
-        {
-        }
+
     }
 }

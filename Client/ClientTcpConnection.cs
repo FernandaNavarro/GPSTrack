@@ -10,7 +10,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    public class TcpConnection
+    public class ClientTcpConnection
     {
         public TcpClient TcpClient { get; private set; }
         public NetworkStream Stream { get; private set; }
@@ -25,6 +25,33 @@
 
         public delegate void ErrorCarrier(Exception e);
         public event ErrorCarrier OnError;
+        
+        public string IpAddress { get; set; }
+        public int Port { get; set; }
+        public bool IsZipFormat { get; set; }
+        public bool IsSuntech { get; set; }
+
+        public ClientTcpConnection()
+        {
+            //Default values
+            IpAddress = "127.0.0.1";
+            Port = 1997;
+            IsZipFormat = true;
+            IsSuntech = true;
+        }
+
+        public bool Load()
+        {
+            OnDataRecieved += MessageReceived;
+
+            if (!ToConnect(IpAddress, Port))
+            {
+                Console.WriteLine("Error conectando con el servidor");
+                return false;
+            }
+
+            return true;
+        }
 
         public bool ToConnect(string ipAddress, int port)
         {
@@ -40,10 +67,7 @@
             }
             catch (Exception e)
             {
-                if (OnError != null)
-                {
-                    OnError(e);
-                }
+                OnError?.Invoke(e);
                 return false;
             }
         }
@@ -85,38 +109,38 @@
                 }
                 catch (Exception e)
                 {
-                    if (OnError != null)
-                    {
-                        OnError(e);
-                    }
+                    OnError?.Invoke(e);
                     break;
                 }
             } while (true);
-            if (OnDisconnect != null)
-            {
-                OnDisconnect();
-            }
+            OnDisconnect?.Invoke();
         }
 
-        private void WriteMessage(string message)
+        private void WriteMsg(string msg)
         {
             try
             {
-                Writer.Write(message + "\0");
+                Writer.Write(msg + "\0");
                 Writer.Flush();
             }
             catch (Exception e)
             {
-                if (OnError != null)
-                {
-                    OnError(e);
-                }
+                OnError?.Invoke(e);
             }
+        }
+        
+        private static void MessageReceived(string data)
+        {
+            //here call or put the logic for to clasificate the message and display it.
+            Console.WriteLine(data);
         }
 
         public void SendMessage(string message)
         {
-            WriteMessage(message);
+            if (TcpClient.Connected)
+            {
+                WriteMsg(message);
+            }
         }
     }
 }

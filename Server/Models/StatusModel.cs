@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GPSTrack.ViewModels;
-
-namespace GPSTrack.Models
+﻿namespace Server.Models
 {
-    public class AlertModel
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    public class StatusModel
     {
         #region Attributes
-        private static AlertModel _instance;
+        private static StatusModel _instance;
         private string hDR;
         private string pKT_LEN;
         private string dEV_ID;
@@ -33,9 +32,9 @@ namespace GPSTrack.Models
         private string fIX;
         private string iN_STATE;
         private string oUT_STATE;
-        private string aLERT_ID;
-        private string aLERT_MOD;
-        private string aLERT_DATA;
+        private string mODE;
+        private string sTT_RPT_TYPE;
+        private string mSG_NUM;
         private string Reserved;
         private string aSSIGN_MAP;
         private string s_ASSIGN1;
@@ -74,7 +73,7 @@ namespace GPSTrack.Models
 
         #region Properties
         /// <summary>
-        /// Header of Alert Report.
+        /// Header of Status Report.
         /// </summary>
         public string HDR
         {
@@ -109,6 +108,7 @@ namespace GPSTrack.Models
             set { sTT_RPT_MAP = value; }
         }
 
+
         /// <summary>
         /// Device Model (According to table model).
         /// </summary>
@@ -117,6 +117,7 @@ namespace GPSTrack.Models
             get { return mODEL; }
             set { mODEL = value; }
         }
+
 
         /// <summary>
         /// Software Version.
@@ -272,36 +273,30 @@ namespace GPSTrack.Models
         }
 
         /// <summary>
-        /// Alert ID Number
+        /// Mode the Device is.
         /// </summary>
-        public string ALERT_ID
+        public string MODE
         {
-            get { return aLERT_ID; }
-            set { aLERT_ID = value; }
+            get { return mODE; }
+            set { mODE = value; }
         }
 
         /// <summary>
-        /// Contains Modifier for certain Alert IDs
-        /// Second Byte: Length of the ALERT_DATA
+        /// Type of Report
         /// </summary>
-        public string ALERT_MOD
+        public string STT_RPT_TYPE
         {
-            get { return aLERT_MOD; }
-            set
-            {
-                var number = Convert.ToInt32(value.Substring(2, value.Length), 16) * 2;
-                AlertViewModel.GetReference().SetPropertyLengthValue("ALERT_DATA",number);
-                aLERT_MOD = value;
-            }
+            get { return sTT_RPT_TYPE; }
+            set { sTT_RPT_TYPE = value; }
         }
 
         /// <summary>
-        /// Contains Data for certain Alert IDs
+        /// Message number.
         /// </summary>
-        public string ALERT_DATA
+        public string MSG_NUM
         {
-            get { return aLERT_DATA; }
-            set { aLERT_DATA = value; }
+            get { return mSG_NUM; }
+            set { mSG_NUM = value; }
         }
 
         /// <summary>
@@ -491,11 +486,11 @@ namespace GPSTrack.Models
         }
         #endregion
 
-        public static AlertModel GetReference()
+        public static StatusModel GetReference()
         {
             if (_instance == null)
             {
-                _instance = new AlertModel();
+                _instance = new StatusModel();
             }
 
             return _instance;

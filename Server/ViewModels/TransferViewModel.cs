@@ -1,11 +1,11 @@
-﻿namespace GPSTrack.ViewsModels
+﻿namespace Server.ViewModels
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using GPSTrack.Models;
+    using Server.Models;
 
     public class TransferViewModel
     {

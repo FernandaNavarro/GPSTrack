@@ -1,18 +1,18 @@
-﻿namespace GPSTrack.ViewsModels
+﻿namespace Server.ViewModels
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using GPSTrack.Models;
+    using Server.Models;
 
-    public class ExternalViewModel
+    public class StatusViewModel
     {
         #region Variables
-        private static ExternalViewModel _instance;
+        private static StatusViewModel _instance;
 
-        public Dictionary<string, int> propertyLength = new Dictionary<string, int>()
+        private Dictionary<string, int> propertyLength = new Dictionary<string, int>()
         {
             {"HDR", 2 },
             {"PKT_LEN", 4 },
@@ -36,21 +36,56 @@
             {"FIX", 2 },
             {"IN_STATE", 2 },
             {"OUT_STATE", 2 },
-            {"LEN", 4 },
-            {"DATA", 0 },
-            {"CHK_SUM", 4 },
+            {"MODE", 2 },
+            {"STT_RPT_TYPE", 2 },
+            {"MSG_NUM", 4 },
             {"reserved", 2 },
-            {"reserved2", 2 },
+            {"ASSIGN_MAP", 8 },
+            {"S_ASSIGN1", 4},
+            {"S_ASSIGN2", 4},
+            {"S_ASSIGN3", 4},
+            {"S_ASSIGN4", 4},
+            {"S_ASSIGN5", 4},
+            {"S_ASSIGN6", 4},
+            {"S_ASSIGN7", 4},
+            {"S_ASSIGN8", 4},
+            {"S_ASSIGN9", 4},
+            {"S_ASSIGN10", 4},
+            {"S_ASSIGN11", 4},
+            {"S_ASSIGN12", 4},
+            {"S_ASSIGN13", 4},
+            {"S_ASSIGN14", 4},
+            {"S_ASSIGN15", 4},
+            {"M_ASSIGN1", 8 },
+            {"M_ASSIGN2", 8 },
+            {"M_ASSIGN3", 8 },
+            {"M_ASSIGN4", 8 },
+            {"M_ASSIGN5", 8 },
+            {"M_ASSIGN6", 8 },
+            {"M_ASSIGN7", 8 },
+            {"M_ASSIGN8", 8 },
+            {"L_ASSIGN1", 16 },
+            {"L_ASSIGN2", 16 },
+            {"L_ASSIGN3", 16 },
+            {"L_ASSIGN4", 16 },
+            {"L_ASSIGN5", 16 },
+            {"L_ASSIGN6", 16 },
+            {"L_ASSIGN7", 16 },
+            {"L_ASSIGN8", 16 },
         };
         private static string voidField = "#";
         #endregion
 
-        #region Methosds
-        public static ExternalViewModel GetReference()
+        #region Contructors
+
+        #endregion
+
+        #region Methods
+        public static StatusViewModel GetReference()
         {
             if (_instance == null)
             {
-                _instance = new ExternalViewModel();
+                _instance = new StatusViewModel();
             }
 
             return _instance;
@@ -69,9 +104,9 @@
             }
         }
 
-        public ExternalModel GetObjZipFormat(string message)
+        public StatusModel GetObjZipFormat(string message)
         {
-            var obj = new ExternalModel();
+            var obj = new StatusModel();
             int propertyLength = 0;
             int sumLengths = 0;
 
@@ -91,9 +126,9 @@
             return obj;
         }
 
-        public ExternalModel GetObjNormalFormat(string message)
+        public StatusModel GetObjNormalFormat(string message)
         {
-            var obj = new ExternalModel();
+            var obj = new StatusModel();
             var arrMsg = message.Split(';');
             int index = 0;
             foreach (var property in obj.GetType().GetProperties())
@@ -112,7 +147,7 @@
             return obj;
         }
 
-        public void DisplayData(ExternalModel status)
+        public void DisplayData(StatusModel status)
         {
             foreach (var property in status.GetType().GetProperties())
             {
@@ -120,7 +155,7 @@
             }
         }
 
-        public string GetMsgZipFormat(ExternalModel message)
+        public string GetMsgZipFormat(StatusModel message)
         {
             StringBuilder msg = new StringBuilder();
             foreach (var property in message.GetType().GetProperties())
@@ -136,7 +171,7 @@
             return msg.ToString();
         }
 
-        public string GetMsgNormalFormat(ExternalModel message)
+        public string GetMsgNormalFormat(StatusModel message)
         {
             StringBuilder msg = new StringBuilder();
             foreach (var property in message.GetType().GetProperties())
@@ -152,11 +187,6 @@
             var theMSG = msg.ToString();
 
             return theMSG.Substring(0, theMSG.Length - 1);
-        }
-
-        public void SetPropertyLengthValue(string key, int value)
-        {
-            propertyLength[key] = value;
         }
         #endregion
 
